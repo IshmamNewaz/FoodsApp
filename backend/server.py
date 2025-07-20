@@ -295,10 +295,15 @@ def detect_foods_json(image_path):
     return cleaned
 
 # -------------------- SPEECH TO TEXT -------------------- #
-warnings.filterwarnings("ignore", category=UserWarning)
-print("Loading Whisper model...")
-WHISPER_MODEL = whisper.load_model("tiny")  # tiny for low RAM
-print("Model loaded.")
+def transcribe_audio_with_openai(audio_path):
+    load_dotenv()
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    with open(audio_path, "rb") as audio_file:
+        transcript = openai.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file
+        )
+    return transcript.text
 
 # -------------------- TEXT TO SPEECH -------------------- #
 load_dotenv()
@@ -391,8 +396,7 @@ def handle_input():
             with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
                 file.save(tmp)
                 tmp_path = tmp.name
-            result = WHISPER_MODEL.transcribe(tmp_path)
-            user_text = result["text"]
+            user_text = transcribe_audio_with_openai(tmp_path)
             os.remove(tmp_path)
 
         # 3. TEXT input

@@ -4,9 +4,7 @@ werkzeug
 openai
 python-dotenv
 elevenlabs
-openai-whisper
 sounddevice
 scipy
 numpy
-openai-agents
 nest-asyncio
