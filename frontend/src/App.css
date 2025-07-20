@@ -229,6 +229,11 @@ body {
   color: var(--primary-color);
 }
 
+.icon-button.recording {
+  color: red;
+  transform: scale(1.2);
+}
+
 .icon-button svg {
   width: 24px;
   height: 24px;
