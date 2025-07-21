@@ -342,7 +342,7 @@ async def async_speak(text: str, profile: str) -> bytes:
         audio_bytes += chunk
     
     if play_speech:
-        play(audio_bytes)
+        pass
     return audio_bytes
 
 def speak(text: str, profile: str) -> str:
