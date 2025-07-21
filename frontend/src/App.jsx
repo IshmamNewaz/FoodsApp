@@ -24,10 +24,9 @@ const playAudio = (base64Audio) => {
 // LandingPage Component
 const LandingPage = ({ onStartChat }) => (
   <div className="landing-container">
-    <div className="landing-background">
-      <div className="landing-image-area"></div>
-      <div className="landing-color-area"></div>
-    </div>
+    <div className="landing-background-image"></div>
+    <div className="landing-background-color"></div>
+    <div className="landing-gradient-overlay"></div>
     <div className="landing-content-overlay">
       <h1 className="landing-title">Meet ELIA</h1>
       <p className="landing-subtitle">Your personal AI health coach. Get guidance on nutrition, fitness, and wellness.</p>
@@ -43,6 +42,38 @@ const LandingPage = ({ onStartChat }) => (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
           </button>
         </div>
+      </div>
+      <div className="header-container">
+        <button className="header-button">
+          <div className="button-content">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l9-13 9 13-9 3z"></path><path d="M12 4v17"></path></svg>
+            <span>Journey</span>
+          </div>
+        </button>
+        <button className="header-button">
+          <div className="button-content">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Community</span>
+          </div>
+        </button>
+        <button className="header-button selected">
+          <div className="button-content">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11.002 1.998a.999.999 0 0 1 .998.998v2.004a.999.999 0 0 1-1.996 0V2.996a.999.999 0 0 1 .998-.998zM11.002 17.998a.999.999 0 0 1 .998.998v2.004a.999.999 0 0 1-1.996 0v-2.004a.999.999 0 0 1 .998-.998zM3.996 11.002a.999.999 0 0 1 .998-.998h2.004a.999.999 0 0 1 0 1.996H4.994a.999.999 0 0 1-.998-.998zM17.996 11.002a.999.999 0 0 1 .998-.998h2.004a.999.999 0 0 1 0 1.996h-2.004a.999.999 0 0 1-.998-.998zM6.343 6.343a.999.999 0 0 1 .707-.293h.001a.999.999 0 0 1 .707 1.707l-1.414 1.414a.999.999 0 0 1-1.414-1.414l1.414-1.414zM15.657 15.657a.999.999 0 0 1 .707-.293h.001a.999.999 0 0 1 .707 1.707l-1.414 1.414a.999.999 0 0 1-1.414-1.414l1.414-1.414zM6.343 17.657a.999.999 0 0 1-.707-.293l-1.414-1.414a.999.999 0 0 1 1.414-1.414l1.414 1.414a.999.999 0 0 1-.707 1.707zM15.657 6.343a.999.999 0 0 1-.707-.293l-1.414-1.414a.999.999 0 0 1 1.414-1.414l1.414 1.414a.999.999 0 0 1-.707 1.707z"></path></svg>
+            <span>ELIA</span>
+          </div>
+        </button>
+        <button className="header-button">
+          <div className="button-content">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span>Marketplace</span>
+          </div>
+        </button>
+        <button className="header-button">
+          <div className="button-content">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span>Health</span>
+          </div>
+        </button>
       </div>
     </div>
   </div>

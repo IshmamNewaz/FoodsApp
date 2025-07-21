@@ -38,44 +38,46 @@ body {
   flex-direction: column;
 }
 
-.landing-background {
+.landing-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70%; /* Adjust as needed */
+  background-image: url('LandingPage.JPG');
+  background-size: 100% auto;
+  background-position: top;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.landing-background-color {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%; /* Adjust as needed */
+  background: #76B8DA;
+  z-index: 0;
+}
+
+.landing-gradient-overlay {
+  position: absolute;
+  bottom: 30%; /* Should start where the color div begins */
+  left: 0;
+  right: 0;
+  height: 100px; /* Height of the gradient blend */
+  background: linear-gradient(to bottom, transparent, #76B8DA);
+  z-index: 1;
+}
+
+.landing-content-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.landing-image-area {
-  flex: 1;
-  background-image: url('LandingPage.JPG');
-  background-size: 100% auto;
-  background-position: top;
-  background-repeat: no-repeat;
-}
-
-.landing-color-area {
-  flex: 0.2;
-  background: #76B8DA;
-  position: relative;
-}
-
-.landing-color-area::before {
-  content: '';
-  position: absolute;
-  top: -100px;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to top, #76B8DA, transparent);
-}
-
-.landing-content-overlay {
-  position: relative;
-  z-index: 1;
-  flex: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,6 +85,59 @@ body {
   text-align: center;
   padding: 20px;
   color: var(--light-text-color);
+}
+
+.header-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 10px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+.header-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  padding: 5px; /* Reduced padding to allow more space for content */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-button.selected {
+  background: #76B8DA;
+  color: white;
+}
+
+.header-button:hover {
+  background: #f0f0f0;
+}
+
+.button-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-content svg {
+  margin-bottom: 5px; /* Space between icon and text */
+}
+
+.button-content span {
+  font-size: 0.8rem; /* Smaller font size for text below icon */
 }
 
 .landing-title {
@@ -99,7 +154,7 @@ body {
 
 .landing-buttons-container {
   position: absolute;
-  bottom: 20px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.2);
