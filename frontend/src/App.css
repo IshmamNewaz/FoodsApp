@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--background-color);
-  max-width: 700px;
+  max-width: 500px;
   margin: 0 auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
@@ -33,14 +33,56 @@ body {
 
 .landing-container {
   flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-image-area {
+  flex: 1;
+  background-image: url('LandingPage.JPG');
+  background-size: 100% auto;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.landing-color-area {
+  flex: 0.2;
+  background: #76B8DA;
+  position: relative;
+}
+
+.landing-color-area::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, #76B8DA, transparent);
+}
+
+.landing-content-overlay {
+  position: relative;
+  z-index: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--user-message-bg);
-  color: var(--light-text-color);
   text-align: center;
   padding: 20px;
+  color: var(--light-text-color);
 }
 
 .landing-title {
@@ -55,13 +97,23 @@ body {
   max-width: 500px;
 }
 
+.landing-buttons-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 40px;
+}
+
 .input-buttons {
   display: flex;
   gap: 20px;
 }
 
 .landing-input {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   width: 60px;
@@ -79,7 +131,7 @@ body {
 }
 
 .landing-input svg {
-  color: var(--light-text-color);
+  color: #ffffff;
 }
 
 .header {
@@ -113,8 +165,6 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/bg.jpg') no-repeat center center fixed;
-  background-size: cover;
 }
 
 .messages {
