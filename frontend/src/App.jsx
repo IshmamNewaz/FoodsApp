@@ -69,7 +69,7 @@ const Chat = ({ onEndChat, initialAction }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/text', { text: input });
+      const response = await axios.get('/text', { text: input });
       const { response: eliaText, audio } = response.data;
       const eliaMessage = { user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       
@@ -99,7 +99,7 @@ const Chat = ({ onEndChat, initialAction }) => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('/text', formData);
+      const response = await axios.get('/text', formData);
       const { response: eliaText, audio } = response.data;
       const eliaMessage = { user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       
@@ -144,7 +144,7 @@ const Chat = ({ onEndChat, initialAction }) => {
           setIsLoading(true);
 
           try {
-            const response = await axios.post('/text', formData);
+            const response = await axios.get('/text', formData);
             const { response: eliaText, audio } = response.data;
             const eliaMessage = { user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
             
