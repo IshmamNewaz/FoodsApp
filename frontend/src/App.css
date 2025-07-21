@@ -39,34 +39,28 @@ body {
 }
 
 .landing-background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80%; /* Adjust as needed */
+  flex: 4; /* Takes up 80% of available space */
   background-image: url('LandingPage.JPG');
-  background-size: 100% auto;
+  background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
   z-index: 0;
 }
 
 .landing-background-color {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20%; /* Adjust as needed */
+  flex: 1; /* Takes up 20% of available space */
   background: #76B8DA;
+  position: relative;
   z-index: 0;
 }
 
-.landing-gradient-overlay {
+.landing-background-color::before {
+  content: '';
   position: absolute;
-  bottom: 20%; /* Should start where the color div begins */
+  top: -100px; /* Adjust to control gradient height */
   left: 0;
   right: 0;
-  height: 50px; /* Height of the gradient blend */
+  height: 100px;
   background: linear-gradient(to bottom, transparent, #76B8DA);
   z-index: 1;
 }
@@ -148,12 +142,14 @@ body {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .landing-subtitle {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   max-width: 500px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .landing-buttons-container {
@@ -195,24 +191,39 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  background: var(--user-message-bg);
-  color: var(--light-text-color);
+  background: white; /* Change background to white */
+  color: var(--text-color); /* Change text color to a darker one for contrast */
+  position: relative; /* Add relative positioning */
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.2rem; /* Reduced font size */
+  font-weight: normal; /* Remove bolding */
+  flex-grow: 1; /* Allow h1 to take available space */
+  text-align: center; /* Center the text */
+}
+
+.close-button-wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #F1F0EE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 24px;
 }
 
 .close {
-  font-size: 1.5rem;
+  font-size: 1rem; /* Smaller size */
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.2s ease;
+  color: var(--text-color); /* Ensure color is visible */
 }
 
 .close:hover {

@@ -369,7 +369,7 @@ user_profile = UserProfile(
 
 # -------------------- FLASK SERVER -------------------- #
 app = Flask(__name__)
-CORS(app, resources={r"/text": {"origins": ["https://*.ngrok.io", "http://localhost:5173", "http://3.134.101.21:5173"]}})
+CORS(app)
 
 @app.route('/text', methods=['POST'])
 def handle_input():

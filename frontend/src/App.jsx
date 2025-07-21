@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -58,19 +57,19 @@ const LandingPage = ({ onStartChat }) => (
         </button>
         <button className="header-button selected">
           <div className="button-content">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11.002 1.998a.999.999 0 0 1 .998.998v2.004a.999.999 0 0 1-1.996 0V2.996a.999.999 0 0 1 .998-.998zM11.002 17.998a.999.999 0 0 1 .998.998v2.004a.999.999 0 0 1-1.996 0v-2.004a.999.999 0 0 1 .998-.998zM3.996 11.002a.999.999 0 0 1 .998-.998h2.004a.999.999 0 0 1 0 1.996H4.994a.999.999 0 0 1-.998-.998zM17.996 11.002a.999.999 0 0 1 .998-.998h2.004a.999.999 0 0 1 0 1.996h-2.004a.999.999 0 0 1-.998-.998zM6.343 6.343a.999.999 0 0 1 .707-.293h.001a.999.999 0 0 1 .707 1.707l-1.414 1.414a.999.999 0 0 1-1.414-1.414l1.414-1.414zM15.657 15.657a.999.999 0 0 1 .707-.293h.001a.999.999 0 0 1 .707 1.707l-1.414 1.414a.999.999 0 0 1-1.414-1.414l1.414-1.414zM6.343 17.657a.999.999 0 0 1-.707-.293l-1.414-1.414a.999.999 0 0 1 1.414-1.414l1.414 1.414a.999.999 0 0 1-.707 1.707zM15.657 6.343a.999.999 0 0 1-.707-.293l-1.414-1.414a.999.999 0 0 1 1.414-1.414l1.414 1.414a.999.999 0 0 1-.707 1.707z"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11.002 1.998a.999.999 0 0 1 .998.998v2.004a.999.999 0 0 1-1.996 0V2.996a.999.999 0 0 1 .998-.998zM11.002 17.998a.999.999 0 0 1 .998.998v2.004a.999.999 0 0 1-1.996 0v-2.004a.999.999 0 0 1 .998-.998zM3.996 11.002a.999.999 0 0 1 .998-.998h2.004a.999.999 0 0 1 0 1.996H4.994a.999.999 0 0 1-.998-.998zM17.996 11.002a.999.999 0 0 1 .998-.998h2.004a.999.999 0 0 1 0 1.996h-2.004a.999.999 0 0 1-.998-.998zM6.343 6.343a.999.999 0 0 1 .707-.293h.001a.999.999 0 0 1 .707 1.707l-1.414 1.414a.999.999 0 0 1-1.414-1.414l1.414-1.414zM15.657 15.657a.999.999 0 0 1 .707-.293h.001a.999.999 0 0 1 .707 1.707l-1.414 1.414a.999.999 0 0 1-1.414-1.414l1.414-1.414zM6.343 17.657a.999.999 0 0 1-.707-.293l-1.414-1.414a.999.999 0 0 1 1.414-1.414l1.414 1.414a.999.999 0 0 1-.707 1.707zM15.657 6.343a.999.999 0 0 1-.707-.293l-1.414-1.414a.999.999 0 0 1 1.414-1.414l1.414 1.414a.999.999 0 0 1-.707 1.707z"></path></svg>
             <span>ELIA</span>
           </div>
         </button>
         <button className="header-button">
           <div className="button-content">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
             <span>Marketplace</span>
           </div>
         </button>
         <button className="header-button">
           <div className="button-content">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             <span>Health</span>
           </div>
         </button>
@@ -89,6 +88,8 @@ const Chat = ({ onEndChat, initialAction }) => {
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
   const messagesEndRef = useRef(null);
+  const [latestAudio, setLatestAudio] = useState(null);
+
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -98,11 +99,19 @@ const Chat = ({ onEndChat, initialAction }) => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+  if (latestAudio) {
+    playAudio(latestAudio);
+    setLatestAudio(null);
+  }
+  }, [latestAudio]);
+
+
   const handleTextSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    const userMessage = { user: 'You', text: input, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+    const userMessage = { id: Date.now(), user: 'You', text: input, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
@@ -110,17 +119,18 @@ const Chat = ({ onEndChat, initialAction }) => {
     try {
       const response = await axios.post('/text', { text: input });
       const { response: eliaText, audio } = response.data;
-      const eliaMessage = { user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+      const eliaMessage = { id: Date.now(), user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       
       setMessages(prev => [...prev, eliaMessage]);
       setIsLoading(false);
 
       if (audio) {
-        playAudio(audio);
+        setLatestAudio(audio);
       }
+
     } catch (error) {
       console.error("Text input error:", error);
-      const errorMessage = { user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+      const errorMessage = { id: Date.now(), user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       setMessages(prev => [...prev, errorMessage]);
       setIsLoading(false);
     }
@@ -130,7 +140,7 @@ const Chat = ({ onEndChat, initialAction }) => {
     const file = e.target.files[0];
     if (!file || isLoading) return;
 
-    const userMessage = { user: 'You', text: `Image sent: ${file.name}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+    const userMessage = { id: Date.now(), user: 'You', text: `Image sent: ${file.name}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
     setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
 
@@ -140,17 +150,18 @@ const Chat = ({ onEndChat, initialAction }) => {
     try {
       const response = await axios.post('/text', formData);
       const { response: eliaText, audio } = response.data;
-      const eliaMessage = { user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+      const eliaMessage = { id: Date.now(), user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       
       setMessages(prev => [...prev, eliaMessage]);
       setIsLoading(false);
 
       if (audio) {
-        playAudio(audio);
+        setLatestAudio(audio);
       }
+
     } catch (error) {
       console.error("Image upload error:", error);
-      const errorMessage = { user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+      const errorMessage = { id: Date.now(), user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       setMessages(prev => [...prev, errorMessage]);
       setIsLoading(false);
     }
@@ -158,7 +169,7 @@ const Chat = ({ onEndChat, initialAction }) => {
 
   const handleVoiceInput = async () => {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      const errorMessage = { user: 'ELIA', text: "Error: Audio recording not supported.", time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+      const errorMessage = { id: Date.now(), user: 'ELIA', text: "Error: Audio recording not supported.", time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       setMessages(prev => [...prev, errorMessage]);
       return;
     }
@@ -178,24 +189,31 @@ const Chat = ({ onEndChat, initialAction }) => {
           const formData = new FormData();
           formData.append('audio', blob, 'recording.webm');
 
-          const userMessage = { user: 'You', text: 'Voice message sent.', time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+          const placeholderId = Date.now();
+
+          const userMessage = { id: placeholderId, user: 'You', text: 'Voice Massage Sent.', time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
           setMessages(prev => [...prev, userMessage]);
+
           setIsLoading(true);
 
           try {
             const response = await axios.post('/text', formData);
-            const { response: eliaText, audio } = response.data;
-            const eliaMessage = { user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+            const { response: eliaText, audio, Own_Voice } = response.data;
+            
+            setMessages(prev => prev.map(msg => msg.id === placeholderId ? { ...msg, text: Own_Voice || msg.text } : msg ) );
+
+            const eliaMessage = { id: Date.now(), user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
             
             setMessages(prev => [...prev, eliaMessage]);
             setIsLoading(false);
 
             if (audio) {
-              playAudio(audio);
+              setLatestAudio(audio);
             }
+
           } catch (error) {
             console.error("Voice submission error:", error);
-            const errorMessage = { user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+            const errorMessage = { id: Date.now(), user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
             setMessages(prev => [...prev, errorMessage]);
             setIsLoading(false);
           }
@@ -204,7 +222,7 @@ const Chat = ({ onEndChat, initialAction }) => {
         setIsRecording(true);
       } catch (error) {
         console.error("Voice recording error:", error);
-        const errorMessage = { user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
+        const errorMessage = { id: Date.now(), user: 'ELIA', text: `Error: ${error.message}`, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
         setMessages(prev => [...prev, errorMessage]);
         setIsRecording(false);
       }
@@ -218,8 +236,10 @@ const Chat = ({ onEndChat, initialAction }) => {
   return (
     <div className="chat-container">
       <div className="header">
-        <h1>ELIA Health Coach</h1>
-        <span className="close" onClick={onEndChat}>✖</span>
+        <h1>Chat with ELIA</h1>
+        <div className="close-button-wrapper">
+          <span className="close" onClick={onEndChat}>✖</span>
+        </div>
       </div>
       <div className="messages">
         {messages.map((msg, index) => (
@@ -251,13 +271,15 @@ const Chat = ({ onEndChat, initialAction }) => {
         />
         <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: 'none' }} ref={imageInputRef} />
         <button type="button" className="icon-button" onClick={() => imageInputRef.current.click()} disabled={isLoading}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg> 
         </button>
         <button type="button" className={`icon-button ${isRecording ? 'recording' : ''}`} onClick={handleVoiceInput} disabled={isLoading}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
         </button>
         <button type="submit" className="send-button" disabled={isLoading || !input.trim()}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+         
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> 
+
         </button>
       </form>
     </div>
