@@ -13,7 +13,7 @@ export default defineConfig({
     },
     proxy: {
       '/text': {
-        target: 'http://localhost:5000',
+        target: 'http://3.128.247.91:5000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/text/, '/text')
@@ -22,7 +22,7 @@ export default defineConfig({
     allowedHosts: [
       'localhost',
       '127.0.0.1',
-      '813a9b6ce93a.ngrok-free.app'
+      '3.128.247.91:5000'
     ]
     // Or, for dev, you can do:
     // allowedHosts: 'all'
