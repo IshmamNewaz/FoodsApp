@@ -340,60 +340,64 @@ CORS(app)
 
 @app.route('/text', methods=['POST', 'GET'])
 def handle_input():
-    return jsonify({"response": "Welcome to ELIA! Please send an image, audio, or text input."})
-    try:
-        # 1. IMAGE input
-        if 'image' in request.files:
-            file = request.files['image']
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
-                file.save(tmp)
-                tmp_path = tmp.name
-            try:
-                foods_json = detect_foods_json(tmp_path)
-                text_2_voice_prompt = """[PROMPT]
-                    Your task is to act as a voice script editor. Convert the following structured text from a health coach named ELIA into a warm, natural, and conversational monologue that is ready for a text-to-speech engine.
-                    (Rules omitted for brevity)
-                    [TEXT TO CONVERT]\n\n"""
-                user_text = text_2_voice_prompt + foods_json
-            finally:
+    def handle_input():
+    if request.method == 'GET':
+        return jsonify({"response": "Welcome to ELIA! Please send an image, audio, or text input."})
+    # Your original POST logic here
+    elif request.method == 'POST':
+        try:
+            # 1. IMAGE input
+            if 'image' in request.files:
+                file = request.files['image']
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
+                    file.save(tmp)
+                    tmp_path = tmp.name
+                try:
+                    foods_json = detect_foods_json(tmp_path)
+                    text_2_voice_prompt = """[PROMPT]
+                        Your task is to act as a voice script editor. Convert the following structured text from a health coach named ELIA into a warm, natural, and conversational monologue that is ready for a text-to-speech engine.
+                        (Rules omitted for brevity)
+                        [TEXT TO CONVERT]\n\n"""
+                    user_text = text_2_voice_prompt + foods_json
+                finally:
+                    os.remove(tmp_path)
+
+            # 2. AUDIO input
+            elif 'audio' in request.files:
+                file = request.files['audio']
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
+                    file.save(tmp)
+                    tmp_path = tmp.name
+                result = WHISPER_MODEL.transcribe(tmp_path)
+                user_text = result["text"]
                 os.remove(tmp_path)
 
-        # 2. AUDIO input
-        elif 'audio' in request.files:
-            file = request.files['audio']
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
-                file.save(tmp)
-                tmp_path = tmp.name
-            result = WHISPER_MODEL.transcribe(tmp_path)
-            user_text = result["text"]
-            os.remove(tmp_path)
+            # 3. TEXT input
+            elif request.is_json:
+                data = request.get_json()
+                user_text = data.get("text", "")
+            else:
+                return jsonify({"response": "No valid input provided", "audio": ""}), 400
 
-        # 3. TEXT input
-        elif request.is_json:
-            data = request.get_json()
-            user_text = data.get("text", "")
-        else:
-            return jsonify({"response": "No valid input provided", "audio": ""}), 400
+            # --- Run main agent pipeline ---
+            user_profile.conversation_history.append(user_text)
+            nutrition_agent_dynamic = Agent[UserProfile](
+                name="ELIA",
+                model="gpt-4o-mini",
+                instructions=build_dynamic_instructions(user_profile),
+                tools=[fetch_profile_info]
+            )
+            result = Runner.run_sync(nutrition_agent_dynamic, user_text, context=user_profile)
+            msg = result.final_output
 
-        # --- Run main agent pipeline ---
-        user_profile.conversation_history.append(user_text)
-        nutrition_agent_dynamic = Agent[UserProfile](
-            name="ELIA",
-            model="gpt-4o-mini",
-            instructions=build_dynamic_instructions(user_profile),
-            tools=[fetch_profile_info]
-        )
-        result = Runner.run_sync(nutrition_agent_dynamic, user_text, context=user_profile)
-        msg = result.final_output
+            # --- Generate audio for the response ---
+            audio_base64 = speak(msg, profile="Empathetic")
 
-        # --- Generate audio for the response ---
-        audio_base64 = speak(msg, profile="Empathetic")
+            return jsonify({"response": msg, "audio": audio_base64})
 
-        return jsonify({"response": msg, "audio": audio_base64})
-
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({"response": f"Server error: {str(e)}", "audio": ""}), 500
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"response": f"Server error: {str(e)}", "audio": ""}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
