@@ -104,6 +104,7 @@ body {
 .header-button {
   background: none;
   border: none;
+  outline: none; /* Remove outline */
   font-size: 1rem;
   color: #333;
   cursor: pointer;
@@ -117,8 +118,11 @@ body {
 }
 
 .header-button.selected {
-  background: #76B8DA;
-  color: white;
+  color: #76B8DA; /* Text color to solid color */
+}
+
+.header-button.selected .button-content svg {
+  color: #76B8DA; /* SVG color to solid color */
 }
 
 .header-button:hover {
