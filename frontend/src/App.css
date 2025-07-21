@@ -43,7 +43,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 70%; /* Adjust as needed */
+  height: 80%; /* Adjust as needed */
   background-image: url('LandingPage.JPG');
   background-size: 100% auto;
   background-position: top;
@@ -56,17 +56,17 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30%; /* Adjust as needed */
+  height: 20%; /* Adjust as needed */
   background: #76B8DA;
   z-index: 0;
 }
 
 .landing-gradient-overlay {
   position: absolute;
-  bottom: 30%; /* Should start where the color div begins */
+  bottom: 20%; /* Should start where the color div begins */
   left: 0;
   right: 0;
-  height: 100px; /* Height of the gradient blend */
+  height: 50px; /* Height of the gradient blend */
   background: linear-gradient(to bottom, transparent, #76B8DA);
   z-index: 1;
 }
