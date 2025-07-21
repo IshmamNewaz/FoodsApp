@@ -338,8 +338,9 @@ user_profile = UserProfile(
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/text', methods=['POST'])
+@app.route('/text', methods=['POST', 'GET'])
 def handle_input():
+    return jsonify({"response": "Welcome to ELIA! Please send an image, audio, or text input."})
     try:
         # 1. IMAGE input
         if 'image' in request.files:
