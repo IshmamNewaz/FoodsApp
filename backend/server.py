@@ -336,7 +336,7 @@ user_profile = UserProfile(
 
 # -------------------- FLASK SERVER -------------------- #
 app = Flask(__name__)
-CORS(app, resources={r"/text": {"origins": ["*"]}})
+CORS(app)
 
 @app.route('/text', methods=['POST'])
 def handle_input():
