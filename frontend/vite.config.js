@@ -13,7 +13,7 @@ export default defineConfig({
     // },
     proxy: {
       '/text': {
-        target: 'http://3.128.247.91:5000',
+        target: 'https://3.128.247.91:5000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/text/, '/text')
