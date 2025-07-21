@@ -420,7 +420,7 @@ def handle_input():
         # --- Generate audio for the response ---
         audio_base64 = speak(msg, profile="Empathetic")
 
-        return jsonify({"response": msg, "audio": audio_base64})
+        return jsonify({"response": msg, "audio": audio_base64, "Own_Voice": user_text})
 
     except Exception as e:
         print("Error:", e)
