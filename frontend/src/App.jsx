@@ -117,7 +117,7 @@ const Chat = ({ onEndChat, initialAction }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('https://3.128.247.91:5000/text', { text: input }, { timeout: 0 });
+      const response = await axios.post('https://helloelia.com:5000/text', { text: input }, { timeout: 0 });
       const { response: eliaText, audio } = response.data;
       const eliaMessage = { id: Date.now(), user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       
@@ -148,7 +148,7 @@ const Chat = ({ onEndChat, initialAction }) => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('https://3.128.247.91:5000/text', formData, { timeout: 0 });
+      const response = await axios.post('https://helloelia.com:5000/text', formData, { timeout: 0 });
       const { response: eliaText, audio } = response.data;
       const eliaMessage = { id: Date.now(), user: 'ELIA', text: eliaText, time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       
@@ -197,7 +197,7 @@ const Chat = ({ onEndChat, initialAction }) => {
           setIsLoading(true);
 
           try {
-            const response = await axios.post('https://3.128.247.91:5000/text', formData, { timeout: 0 });
+            const response = await axios.post('https://helloelia.com:5000/text', formData, { timeout: 0 });
             const { response: eliaText, audio, Own_Voice } = response.data;
             
             setMessages(prev => prev.map(msg => msg.id === placeholderId ? { ...msg, text: Own_Voice || msg.text } : msg ) );

@@ -13,7 +13,7 @@ export default defineConfig({
     // },
     proxy: {
       '/text': {
-        target: 'https://3.128.247.91:5000',
+        target: 'https://helloelia.com:5000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/text/, '/text')
@@ -22,7 +22,8 @@ export default defineConfig({
     allowedHosts: [
       'localhost',
       '127.0.0.1',
-      '3.128.247.91:5000'
+      '3.128.247.91:5000',
+      'https://helloelia.com/'
     ]
     // Or, for dev, you can do:
     // allowedHosts: 'all'

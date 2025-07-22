@@ -8,3 +8,4 @@ sounddevice
 scipy
 numpy
 nest-asyncio
+openai-whisper
