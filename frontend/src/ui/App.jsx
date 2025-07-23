@@ -3,22 +3,8 @@ import axios from 'axios';
 import './App.css';
 
 // Helper function to play audio
-const playAudio = (base64Audio) => {
-  try {
-    const audioBytes = atob(base64Audio);
-    const arrayBuffer = new ArrayBuffer(audioBytes.length);
-    const bufferView = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < audioBytes.length; i++) {
-      bufferView[i] = audioBytes.charCodeAt(i);
-    }
-    const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
-    const audioUrl = URL.createObjectURL(blob);
-    const audio = new Audio(audioUrl);
-    audio.play().catch(error => console.error("Audio playback error:", error));
-  } catch (error) {
-    console.error("Error processing audio:", error);
-  }
-};
+// In the Chat component
+
 
 // LandingPage Component
 const LandingPage = ({ onStartChat }) => (
@@ -89,7 +75,29 @@ const Chat = ({ onEndChat, initialAction }) => {
   const chunksRef = useRef([]);
   const messagesEndRef = useRef(null);
   const [latestAudio, setLatestAudio] = useState(null);
+const currentAudioRef = useRef(null);
 
+const playAudio = (base64Audio) => {
+  try {
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current.currentTime = 0;
+    }
+    const audioBytes = atob(base64Audio);
+    const arrayBuffer = new ArrayBuffer(audioBytes.length);
+    const bufferView = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < audioBytes.length; i++) {
+      bufferView[i] = audioBytes.charCodeAt(i);
+    }
+    const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+    const audioUrl = URL.createObjectURL(blob);
+    const audio = new Audio(audioUrl);
+    currentAudioRef.current = audio;
+    audio.play().catch(error => console.error("Audio playback error:", error));
+  } catch (error) {
+    console.error("Error processing audio:", error);
+  }
+};
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -168,6 +176,10 @@ const Chat = ({ onEndChat, initialAction }) => {
   };
 
   const handleVoiceInput = async () => {
+    if (currentAudioRef.current) {
+    currentAudioRef.current.pause();
+    currentAudioRef.current.currentTime = 0;
+  }
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       const errorMessage = { id: Date.now(), user: 'ELIA', text: "Error: Audio recording not supported.", time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) };
       setMessages(prev => [...prev, errorMessage]);
