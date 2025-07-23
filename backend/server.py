@@ -313,18 +313,17 @@ async def async_speak(text: str, profile: str) -> bytes:
     return audio_bytes
 
 def speak(text: str, profile: str) -> str:
-    async def _run():
-        return await async_speak(text, profile)
     try:
         loop = asyncio.get_event_loop()
-        if loop.is_closed():
-            raise RuntimeError
     except RuntimeError:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop = asyncio.get_event_loop()
-    audio_bytes = loop.run_until_complete(_run())
+    if loop.is_closed():
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    audio_bytes = loop.run_until_complete(async_speak(text, profile))
     return base64.b64encode(audio_bytes).decode("utf-8")
+
 # -------------------- GLOBAL PROFILE INSTANCE -------------------- #
 user_profile = UserProfile(
     name="Ryan",
@@ -398,4 +397,4 @@ def handle_input():
         return jsonify({"response": f"Server error: {str(e)}", "audio": ""}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=False, threaded=False)
