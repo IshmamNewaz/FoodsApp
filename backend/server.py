@@ -310,16 +310,12 @@ async def async_speak(text: str, profile: str) -> bytes:
 
 def speak(text: str, profile: str) -> str:
     try:
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
     except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-    if loop.is_closed():
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
     audio_bytes = loop.run_until_complete(async_speak(text, profile))
     return base64.b64encode(audio_bytes).decode("utf-8")
-
 # -------------------- GLOBAL PROFILE INSTANCE -------------------- #
 user_profile = UserProfile(
     name="Ryan",
