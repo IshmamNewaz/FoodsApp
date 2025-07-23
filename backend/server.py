@@ -1,3 +1,31 @@
+# from flask import Flask, request, jsonify
+# from flask_cors import CORS
+
+# app = Flask(__name__)
+# CORS(app, resources={r"/text": {"origins": ["https://*.ngrok.io", "http://localhost:5173", "http://3.134.101.21:5173"]}})
+
+# def get_response(text):
+#     return f"Received: {text}"
+
+# @app.route('/text', methods=['POST'])
+# def text_input():
+#     if request.files:
+#         text = request.form.get('text', '')
+#         file_keys = ', '.join(request.files.keys())
+#         response = get_response(f"{text} (received file: {file_keys})")
+#         return jsonify({"response": response})
+#     elif request.is_json:
+#         data = request.get_json()
+#         text = data.get('text', '')
+#         response = get_response(text)
+#         return jsonify({"response": response})
+#     else:
+#         return jsonify({"response": "No valid input provided"}), 400
+
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=5000, debug=False)
+
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import tempfile
@@ -267,10 +295,15 @@ def detect_foods_json(image_path):
     return cleaned
 
 # -------------------- SPEECH TO TEXT -------------------- #
-warnings.filterwarnings("ignore", category=UserWarning)
-print("Loading Whisper model...")
-WHISPER_MODEL = whisper.load_model("tiny")  # tiny for low RAM
-print("Model loaded.")
+def transcribe_audio_with_openai(audio_path):
+    load_dotenv()
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    with open(audio_path, "rb") as audio_file:
+        transcript = openai.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file
+        )
+    return transcript.text
 
 # -------------------- TEXT TO SPEECH -------------------- #
 load_dotenv()
@@ -309,7 +342,7 @@ async def async_speak(text: str, profile: str) -> bytes:
         audio_bytes += chunk
     
     if play_speech:
-        play(audio_bytes)
+        pass
     return audio_bytes
 
 def speak(text: str, profile: str) -> str:
@@ -338,8 +371,8 @@ user_profile = UserProfile(
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/text', methods=['POST', 'GET'])
-def handle_input():    
+@app.route('/text', methods=['POST'])
+def handle_input():
     try:
         # 1. IMAGE input
         if 'image' in request.files:
@@ -363,8 +396,7 @@ def handle_input():
             with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
                 file.save(tmp)
                 tmp_path = tmp.name
-            result = WHISPER_MODEL.transcribe(tmp_path)
-            user_text = result["text"]
+            user_text = transcribe_audio_with_openai(tmp_path)
             os.remove(tmp_path)
 
         # 3. TEXT input
@@ -388,7 +420,7 @@ def handle_input():
         # --- Generate audio for the response ---
         audio_base64 = speak(msg, profile="Empathetic")
 
-        return jsonify({"response": msg, "audio": audio_base64})
+        return jsonify({"response": msg, "audio": audio_base64, "Own_Voice": user_text})
 
     except Exception as e:
         print("Error:", e)

@@ -1,0 +1,5 @@
+{
+  "appId": "com.example.foods",
+  "appName": "FoodsApp",
+  "webDir": "dist-react"
+}
