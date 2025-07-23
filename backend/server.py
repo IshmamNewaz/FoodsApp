@@ -185,6 +185,7 @@ def encode_image_to_base64(image_path):
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 def detect_foods_json(image_path):
+    print("Detecting foods in image:", image_path)
     base64_image = encode_image_to_base64(image_path)
     prompt = ("""
         ROLE:
@@ -247,8 +248,11 @@ def detect_foods_json(image_path):
         ],
         max_tokens=500,
     )
+
     raw_response = response.choices[0].message.content
+    print("Raw response from OpenAI:", raw_response)
     cleaned = raw_response.strip()
+    print("Cleaned response:", cleaned)
     if cleaned.startswith("```json"):
         cleaned = cleaned.removeprefix("```json").strip()
     if cleaned.startswith("```"):
