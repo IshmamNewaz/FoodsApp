@@ -4,6 +4,7 @@ import fs from 'fs'
 
 export default defineConfig({
   plugins: [react()],
+  base: './',
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -24,7 +25,8 @@ export default defineConfig({
       '127.0.0.1',
       '813a9b6ce93a.ngrok-free.app'
     ]
-    // Or, for dev, you can do:
-    // allowedHosts: 'all'
+  },
+  build:{
+    outDir: 'dist-react'
   }
 })
