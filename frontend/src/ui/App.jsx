@@ -14,7 +14,7 @@ const LandingPage = ({ onStartChat }) => (
     <div className="landing-gradient-overlay"></div>
     <div className="landing-content-overlay">
       <h1 className="landing-title">Meet ELIA</h1>
-      <p className="landing-subtitle">Your personal AI health coach. Get guidance on nutrition, fitness, and wellness.</p>
+      <p className="landing-subtitle">Your personalized longevity health coach.</p>
       <div className="landing-buttons-container">
         <div className="input-buttons">
           <button className="landing-input" onClick={() => onStartChat('image')}>
