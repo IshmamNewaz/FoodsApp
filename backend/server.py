@@ -1,52 +1,15 @@
-# from flask import Flask, request, jsonify
-# from flask_cors import CORS
-
-# app = Flask(__name__)
-# CORS(app, resources={r"/text": {"origins": ["https://*.ngrok.io", "http://localhost:5173", "http://3.134.101.21:5173"]}})
-
-# def get_response(text):
-#     return f"Received: {text}"
-
-# @app.route('/text', methods=['POST'])
-# def text_input():
-#     if request.files:
-#         text = request.form.get('text', '')
-#         file_keys = ', '.join(request.files.keys())
-#         response = get_response(f"{text} (received file: {file_keys})")
-#         return jsonify({"response": response})
-#     elif request.is_json:
-#         data = request.get_json()
-#         text = data.get('text', '')
-#         response = get_response(text)
-#         return jsonify({"response": response})
-#     else:
-#         return jsonify({"response": "No valid input provided"}), 400
-
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=5000, debug=False)
-
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import tempfile
 import os
 import openai
 import base64
-import json
-import numpy as np
-import warnings
-import whisper
 from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
-from elevenlabs import play, stream
 from agents import Agent, Runner, function_tool
 from dataclasses import dataclass, field
 from typing import List
 import asyncio
-import nest_asyncio
-
-# Apply nest_asyncio to allow nested event loops
-nest_asyncio.apply()
 
 # -------------------- USER PROFILE & AGENT LOGIC -------------------- #
 @dataclass
@@ -62,9 +25,9 @@ class UserProfile:
     hs_crp: float
     conversation_history: List[str] = field(default_factory=list)
 
-# UNDECORATED version for use in instruction string
 def fetch_profile_info_plain(ctx: UserProfile) -> str:
-    return(
+    # ... (same as before, omitted for brevity)
+    return (
         """
         ### **User Profile of Ryan**
         **1. User Demographics & Vitals**
@@ -222,6 +185,7 @@ def encode_image_to_base64(image_path):
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 def detect_foods_json(image_path):
+    print("Detecting foods in image:", image_path)
     base64_image = encode_image_to_base64(image_path)
     prompt = ("""
         ROLE:
@@ -284,8 +248,11 @@ def detect_foods_json(image_path):
         ],
         max_tokens=500,
     )
+
     raw_response = response.choices[0].message.content
+    print("Raw response from OpenAI:", raw_response)
     cleaned = raw_response.strip()
+    print("Cleaned response:", cleaned)
     if cleaned.startswith("```json"):
         cleaned = cleaned.removeprefix("```json").strip()
     if cleaned.startswith("```"):
@@ -346,13 +313,16 @@ async def async_speak(text: str, profile: str) -> bytes:
     return audio_bytes
 
 def speak(text: str, profile: str) -> str:
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
     try:
-        audio_bytes = loop.run_until_complete(async_speak(text, profile))
-        return base64.b64encode(audio_bytes).decode("utf-8")
-    finally:
-        loop.close()
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    if loop.is_closed():
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    audio_bytes = loop.run_until_complete(async_speak(text, profile))
+    return base64.b64encode(audio_bytes).decode("utf-8")
 
 # -------------------- GLOBAL PROFILE INSTANCE -------------------- #
 user_profile = UserProfile(
@@ -427,4 +397,4 @@ def handle_input():
         return jsonify({"response": f"Server error: {str(e)}", "audio": ""}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=False, threaded=False)
